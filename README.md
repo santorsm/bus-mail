@@ -6,9 +6,8 @@
 
 31 Oct 20
 
-- Created the product object constructor function and instances of each object with properties of product name, the image's filepath, initialized the number of clicks to 0
-- created algoeithm
-
+- Created the product object constructor function and instances of each object with properties of product name, the image's filepath, initialized the number of views to 0
+- created algorithm to randomly generate three unique product indexes
 
 ## Author: Matthew Santorsola
 

@@ -20,7 +20,7 @@ var productImgThree = document.getElementById('image-three');
 
 // constructor
 
-function Product(productName, filePatht) {
+function Product(productName, filePath) {
   this.name = productName;
   this.src = `img/${productName}.${filePath}`;
   this.views = 0;
