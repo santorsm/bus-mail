@@ -1,13 +1,5 @@
 'use strict';
 
-// create a constructor function hat creates an object associated with each product
-//  has following properties:
-//    Name of product
-//    File path of image
-//Randomly generate 3 unique product images from the images directory and display them side-by-side-by-side in the browser
-//Attach an event listener to the section of the HTML page where the images are going to be displayed
-//Once the users ‘clicks’ a product, generate three new products for the user to pick from.
-
 //global variables
 
 var productsArray = [];
@@ -46,16 +38,6 @@ function productGenerator() {
   var selectedProduct = getRandomProductIndex(productsArray.length);
 
   selectedProductArray = [];
-  // if (clicks < 1) {
-  //   selectedProductArray = [];
-  // }
-  // else{
-  //   console.log(selectedProductArray.indexOf(haveISeenYouBeforeArray[0]));
-  //   console.log(selectedProductArray.indexOf(haveISeenYouBeforeArray[1]));
-  //   console.log(selectedProductArray.indexOf(haveISeenYouBeforeArray[2]));
-  // }
-
-  // var selectedProduct = getRandomProductIndex(productsArray.length);
 
   // selectedProduct = getRandomProductIndex(productsArray.length);
   // selectedProductArray.push(selectedProduct);
@@ -93,9 +75,9 @@ function renderProduct() {
   productsArray[productThree].views++;
 
   // console.log(productOne, productTwo, productThree);
-  console.log(haveISeenYouBeforeArray);
+  // console.log(haveISeenYouBeforeArray);
   // console.log(productImgOneEl.alt);
-  console.log(clicks);
+  // console.log(clicks);
 }
 
 
@@ -184,43 +166,15 @@ function makeMyChart(){
       datasets: [{
         label: '# of Votes',
         data: votesArray,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: 'rgba(153, 102, 255, 0.9)',
+        borderColor:'gba(153, 102, 255,1)',
         borderWidth: 1
       },
       {
         label: '# of views',
         data: viewsArray,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: 'rgba(255, 99, 132, 0.9)',
+        borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1
       }]
     },
