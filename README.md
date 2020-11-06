@@ -4,7 +4,6 @@
 
 [PR 2](https://github.com/santorsm/bus-mall/pull/2)
 
-
 ## Progress on the BusMall app
 
 31 Oct 20
@@ -24,6 +23,11 @@
 - Adding button to display all products with # of views & clicks
 - Created the product object constructor function and instances of each object with properties of product name, the image's filepath, initialized the number of views to 0
 - created algorithm to randomly generate three unique product indexes
+
+5 Nov 20
+
+- added Chartjs and began working on the logic to avoid repeating images
+- watched yesterday's class for guidance in eration & placement of Chartjs in JS
 
 ## Author: Matthew Santorsola
 
