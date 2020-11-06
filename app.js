@@ -1,13 +1,5 @@
 'use strict';
 
-// create a constructor function hat creates an object associated with each product
-//  has following properties:
-//    Name of product
-//    File path of image
-//Randomly generate 3 unique product images from the images directory and display them side-by-side-by-side in the browser
-//Attach an event listener to the section of the HTML page where the images are going to be displayed
-//Once the users ‘clicks’ a product, generate three new products for the user to pick from.
-
 //global variables
 
 var productsArray = [];
@@ -46,14 +38,6 @@ function productGenerator() {
   var selectedProduct = getRandomProductIndex(productsArray.length);
 
   selectedProductArray = [];
-  // if (clicks < 1) {
-  //   selectedProductArray = [];
-  // }
-  // else{
-  //   console.log(selectedProductArray.indexOf(haveISeenYouBeforeArray[0]));
-  //   console.log(selectedProductArray.indexOf(haveISeenYouBeforeArray[1]));
-  //   console.log(selectedProductArray.indexOf(haveISeenYouBeforeArray[2]));
-  // }
 
   // var selectedProduct = getRandomProductIndex(productsArray.length);
 
@@ -93,9 +77,9 @@ function renderProduct() {
   productsArray[productThree].views++;
 
   // console.log(productOne, productTwo, productThree);
-  console.log(haveISeenYouBeforeArray);
+  // console.log(haveISeenYouBeforeArray);
   // console.log(productImgOneEl.alt);
-  console.log(clicks);
+  // console.log(clicks);
 }
 
 
