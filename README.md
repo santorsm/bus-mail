@@ -2,7 +2,9 @@
 
  BusMall catalog placed on buses to be viewed during commute. They're a small startup and costs matter. As such, they want to feature only items most likely to sell. They've hired us to conduct market analysis by building app that displays potential products to individuals.
 
-[PR 2](https://github.com/santorsm/bus-mall/pull/2)
+[PR 2](https://github.com/santorsm/bus-mall/pull/2)  
+[PR 5](https://github.com/santorsm/bus-mall/pull/5)  
+[PR 6](https://github.com/santorsm/bus-mall/pull/6)
 
 ## Progress on the BusMall app
 

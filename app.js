@@ -9,12 +9,14 @@ var clicks = 0;
 var votesArray = [];
 var viewsArray = [];
 var namesArray = [];
+
 var myContainer = document.getElementById('container');
 var productImgOneEl = document.getElementById('image-one');
 var productImgTwoEl = document.getElementById('image-two');
 var productImgThreeEl = document.getElementById('image-three');
 var resultList = document.getElementById('list');
 var ctx = document.getElementById('chart').getContext('2d');
+
 // constructor with properties of Name of the product & File path of image
 function Product(productName, filePath) {
   this.name = productName;
@@ -23,10 +25,13 @@ function Product(productName, filePath) {
   this.votes = 0;
   productsArray.push(this);
 }
+
 // functions
 function getRandomProductIndex(max) {
   return Math.floor(Math.random() * max);
 }
+
+
 function productGenerator() {
   var selectedProduct = getRandomProductIndex(productsArray.length);
   //skipped on first go, then removes elements from the front of the array until 3 remain
@@ -63,27 +68,43 @@ function renderProduct() {
   productImgThreeEl.alt = productsArray[productThree].name;
   productsArray[productThree].views++;
 }
-//executable code
-new Product('bag', 'jpg');
-new Product('banana', 'jpg');
-new Product('bathroom', 'jpg');
-new Product('boots', 'jpg');
-new Product('breakfast', 'jpg');
-new Product('bubblegum', 'jpg');
-new Product('chair', 'jpg');
-new Product('cthulhu', 'jpg');
-new Product('dog-duck', 'jpg');
-new Product('dragon', 'jpg');
-new Product('pen', 'jpg');
-new Product('pet-sweep', 'jpg');
-new Product('scissors', 'jpg');
-new Product('shark', 'jpg');
-new Product('sweep', 'jpg');
-new Product('tauntaun', 'jpg');
-new Product('unicorn', 'jpg');
-new Product('usb', 'jpg');
-new Product('water-can', 'jpg');
-new Product('wine-glass', 'jpg');
+
+//local storage - check for stored data and, if it exists, grab it
+
+var votesAndViews = localStorage.getItem('productResults');
+
+//use data if available
+if (votesAndViews) {
+  var parsedVoteAndViews = JSON.parse
+
+  (votesAndViews);
+
+  selectedProductArray = parsedVotesAndViews;
+
+} else {
+  //executable code
+  new Product('bag', 'jpg');
+  new Product('banana', 'jpg');
+  new Product('bathroom', 'jpg');
+  new Product('boots', 'jpg');
+  new Product('breakfast', 'jpg');
+  new Product('bubblegum', 'jpg');
+  new Product('chair', 'jpg');
+  new Product('cthulhu', 'jpg');
+  new Product('dog-duck', 'jpg');
+  new Product('dragon', 'jpg');
+  new Product('pen', 'jpg');
+  new Product('pet-sweep', 'jpg');
+  new Product('scissors', 'jpg');
+  new Product('shark', 'jpg');
+  new Product('sweep', 'jpg');
+  new Product('tauntaun', 'jpg');
+  new Product('unicorn', 'jpg');
+  new Product('usb', 'jpg');
+  new Product('water-can', 'jpg');
+  new Product('wine-glass', 'jpg');
+}
+
 function renderResults() {
   for (var i = 0; i < productsArray.length; i++) {
     // create element
@@ -94,6 +115,7 @@ function renderResults() {
     resultList.appendChild(li);
   }
 }
+
 function buttonFunction() {
   var x = document.getElementById('list');
   if (x.style.display === 'none') {
@@ -102,6 +124,7 @@ function buttonFunction() {
     x.style.display = 'none';
   }
 }
+
 renderProduct();
 function handleClick(event) {
   var clickedProduct = event.target.alt;
@@ -120,11 +143,18 @@ function handleClick(event) {
       makeMyChart();
       buttonFunction();
       renderResults();
+
+      //convert to JSON and send to storage
+      var stringifiedVotesAndViews = JSON.stringify(selectedProductArray);
+      //store the data
+      localStorage.setItem('productResults', stringifiedVotesAndViews);
+
     }
   } else {
     alert('Please click on an image');
   }
 }
+
 function chartData() {
   for (var i = 0; i < productsArray.length; i++) {
     votesArray.push(productsArray[i].votes);
@@ -132,6 +162,7 @@ function chartData() {
     namesArray.push(productsArray[i].name);
   }
 }
+
 function makeMyChart() {
   chartData();
   var chartObject = {
