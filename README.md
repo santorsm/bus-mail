@@ -24,10 +24,17 @@
 - Created the product object constructor function and instances of each object with properties of product name, the image's filepath, initialized the number of views to 0
 - created algorithm to randomly generate three unique product indexes
 
-5 Nov 20
+05 Nov 20
 
 - added Chartjs and began working on the logic to avoid repeating images
 - watched yesterday's class for guidance in eration & placement of Chartjs in JS
+
+07 Nov 20
+
+- completed through chartjs portion of the lab
+- updated JS and Chartjs based upon rubric feedback
+- participated in today's class and code review
+- next update to be adding local storage
 
 ## Author: Matthew Santorsola
 

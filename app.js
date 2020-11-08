@@ -1,26 +1,21 @@
 'use strict';
-
 //global variables
-
 var productsArray = [];
-var haveISeenYouBeforeArray = [];
 var selectedProductArray = [];
 var arrayLength = 3;
+var arrayLengthMultiplier = 2;
 var maxClicks = 25;
 var clicks = 0;
 var votesArray = [];
 var viewsArray = [];
 var namesArray = [];
-
 var myContainer = document.getElementById('container');
 var productImgOneEl = document.getElementById('image-one');
 var productImgTwoEl = document.getElementById('image-two');
 var productImgThreeEl = document.getElementById('image-three');
 var resultList = document.getElementById('list');
 var ctx = document.getElementById('chart').getContext('2d');
-
 // constructor with properties of Name of the product & File path of image
-
 function Product(productName, filePath) {
   this.name = productName;
   this.src = `img/${productName}.${filePath}`;
@@ -28,21 +23,19 @@ function Product(productName, filePath) {
   this.votes = 0;
   productsArray.push(this);
 }
-
 // functions
 function getRandomProductIndex(max) {
   return Math.floor(Math.random() * max);
 }
 function productGenerator() {
-
   var selectedProduct = getRandomProductIndex(productsArray.length);
-
-  selectedProductArray = [];
-
-  // selectedProduct = getRandomProductIndex(productsArray.length);
-  // selectedProductArray.push(selectedProduct);
-
-  while (selectedProductArray.length < arrayLength) {
+  //skipped on first go, then removes elements from the front of the array until 3 remain
+  while (selectedProductArray.length > arrayLength) {
+    selectedProductArray.shift(selectedProduct);
+  }
+  //replaces elements from the end of the array only if the array does not contain this most recently selected item
+  //until array reaches a length of 6 inthis instance
+  while (selectedProductArray.length < (arrayLength * arrayLengthMultiplier)) {
     if (!selectedProductArray.includes(selectedProduct)) {
       selectedProductArray.push(selectedProduct);
     }
@@ -52,7 +45,6 @@ function productGenerator() {
   }
   console.log('selected products:', selectedProductArray);
 }
-
 function renderProduct() {
   productGenerator();
   var productOne = selectedProductArray[0];
@@ -61,26 +53,16 @@ function renderProduct() {
 
   productImgOneEl.src = productsArray[productOne].src;
   productImgOneEl.alt = productsArray[productOne].name;
-  haveISeenYouBeforeArray.push(productImgOneEl.alt);
   productsArray[productOne].views++;
 
   productImgTwoEl.src = productsArray[productTwo].src;
   productImgTwoEl.alt = productsArray[productTwo].name;
-  haveISeenYouBeforeArray.push(productImgTwoEl.alt);
   productsArray[productTwo].views++;
 
   productImgThreeEl.src = productsArray[productThree].src;
   productImgThreeEl.alt = productsArray[productThree].name;
-  haveISeenYouBeforeArray.push(productImgThreeEl.alt);
   productsArray[productThree].views++;
-
-  // console.log(productOne, productTwo, productThree);
-  // console.log(haveISeenYouBeforeArray);
-  // console.log(productImgOneEl.alt);
-  // console.log(clicks);
 }
-
-
 //executable code
 new Product('bag', 'jpg');
 new Product('banana', 'jpg');
@@ -102,11 +84,6 @@ new Product('unicorn', 'jpg');
 new Product('usb', 'jpg');
 new Product('water-can', 'jpg');
 new Product('wine-glass', 'jpg');
-
-
-
-// console.log(getRandomProductIndex(products.length));
-
 function renderResults() {
   for (var i = 0; i < productsArray.length; i++) {
     // create element
@@ -117,47 +94,45 @@ function renderResults() {
     resultList.appendChild(li);
   }
 }
-
+function buttonFunction() {
+  var x = document.getElementById('list');
+  if (x.style.display === 'none') {
+    x.style.display = 'block';
+  } else {
+    x.style.display = 'none';
+  }
+}
 renderProduct();
-
 function handleClick(event) {
-
   var clickedProduct = event.target.alt;
   if (clickedProduct) {
     console.log('clicked:', clickedProduct);
     console.log(clicks);
     clicks++;
-
-
     for (var i = 0; i < productsArray.length; i++) {
       if (clickedProduct === productsArray[i].name) {
         productsArray[i].votes++;
       }
     }
-
     renderProduct();
-
     if (clicks === maxClicks) {
-
       myContainer.removeEventListener('click', handleClick);
       makeMyChart();
+      buttonFunction();
       renderResults();
     }
   } else {
     alert('Please click on an image');
   }
 }
-
 function chartData() {
-
-  for (var i = 0; i < productsArray.length; i++){
+  for (var i = 0; i < productsArray.length; i++) {
     votesArray.push(productsArray[i].votes);
     viewsArray.push(productsArray[i].views);
     namesArray.push(productsArray[i].name);
   }
 }
-
-function makeMyChart(){
+function makeMyChart() {
   chartData();
   var chartObject = {
     type: 'bar',
@@ -166,35 +141,45 @@ function makeMyChart(){
       datasets: [{
         label: '# of Votes',
         data: votesArray,
-        backgroundColor: 'rgba(153, 102, 255, 0.9)',
-        borderColor:'gba(153, 102, 255,1)',
+        backgroundColor:
+          'rgba(63, 104, 191, 0.4)',
+        borderColor:
+          'rgba(63, 104, 191, 0.4)',
         borderWidth: 1
       },
       {
         label: '# of views',
         data: viewsArray,
-        backgroundColor: 'rgba(255, 99, 132, 0.9)',
-        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor:
+          'rgba(63, 104, 191, 1)',
+        borderColor:
+          'rgba(63, 104, 191, 1)',
         borderWidth: 1
       }]
     },
     options: {
+      responsive: true,
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Product Vote & View Totals',
+        fontSize: 32,
+      },
       scales: {
         yAxes: [{
           ticks: {
             beginAtZero: true
           }
-        }]
+        }],
+        xAxes: [{
+          ticks: {
+            fontSize: 18,
+          }
+        }],
       }
     }
   };
-
-  var myChart = new Chart(ctx, chartObject);  // eslint-disable-line
-
+  var myChart = new Chart(ctx, chartObject);  // eslint-disable-line
 }
-
-
 //event listener
 myContainer.addEventListener('click', handleClick);
-
-
