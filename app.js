@@ -71,15 +71,14 @@ function renderProduct() {
 
 //local storage - check for stored data and, if it exists, grab it
 
-var votesAndViews = localStorage.getItem('productResults');
+var retrievedProducts = localStorage.getItem('productResults');
 
 //use data if available
-if (votesAndViews) {
-  var parsedVoteAndViews = JSON.parse
+if (retrievedProducts) {
+  var parsedretrievedProducts = JSON.parse(retrievedProducts);
+  console.log(parsedretrievedProducts);
 
-  (votesAndViews);
-
-  selectedProductArray = parsedVotesAndViews;
+  productsArray = parsedretrievedProducts;
 
 } else {
   //executable code
@@ -126,6 +125,7 @@ function buttonFunction() {
 }
 
 renderProduct();
+
 function handleClick(event) {
   var clickedProduct = event.target.alt;
   if (clickedProduct) {
@@ -143,12 +143,9 @@ function handleClick(event) {
       makeMyChart();
       buttonFunction();
       renderResults();
-
-      //convert to JSON and send to storage
-      var stringifiedVotesAndViews = JSON.stringify(selectedProductArray);
-      //store the data
-      localStorage.setItem('productResults', stringifiedVotesAndViews);
-
+      var stringifiedResults = JSON.stringify(productsArray);
+      console.log(stringifiedResults);
+      localStorage.setItem('productResults', stringifiedResults);
     }
   } else {
     alert('Please click on an image');
