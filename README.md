@@ -1,6 +1,6 @@
 # BusMall
 
- BusMall catalog placed on buses to be viewed during commute. They're a small startup and costs matter. As such, they want to feature only items most likely to sell. They've hired us to conduct market analysis by building app that displays potential products to individuals.
+ BusMall catalog placed on buses to be viewed during commute. They're a small startup and costs matter. As such, they want to feature only items most likely to sell. They've hired us to conduct market analysis by building app that randomly displays potential products to individuals and arhives their selctions for review by the marketing team.
 
 [PR 2](https://github.com/santorsm/bus-mall/pull/2)  
 [PR 5](https://github.com/santorsm/bus-mall/pull/5)  
@@ -29,7 +29,7 @@
 05 Nov 20
 
 - added Chartjs and began working on the logic to avoid repeating images
-- watched yesterday's class for guidance in eration & placement of Chartjs in JS
+- watched yesterday's class for guidance in creation & placement of Chartjs in JS
 
 07 Nov 20
 
@@ -37,6 +37,11 @@
 - updated JS and Chartjs based upon rubric feedback
 - participated in today's class and code review
 - next update to be adding local storage
+
+08 Nov 20
+
+- created and placed button that, when selected by the user, lists the results of the user's activity
+- stores cummulative results to and retrieves from local storage
 
 ## Author: Matthew Santorsola
 

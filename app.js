@@ -31,7 +31,7 @@ function getRandomProductIndex(max) {
   return Math.floor(Math.random() * max);
 }
 
-
+//generates product array based upon constraints detailed below
 function productGenerator() {
   var selectedProduct = getRandomProductIndex(productsArray.length);
   //skipped on first go, then removes elements from the front of the array until 3 remain
@@ -48,8 +48,11 @@ function productGenerator() {
       selectedProduct = getRandomProductIndex(productsArray.length);
     }
   }
-  console.log('selected products:', selectedProductArray);
+  // console.log('selected products:', selectedProductArray);
 }
+//uses index from selectedProductArray to assign products
+//assigns src and name to element on DOM
+//increments views
 function renderProduct() {
   productGenerator();
   var productOne = selectedProductArray[0];
@@ -81,7 +84,7 @@ if (retrievedProducts) {
   productsArray = parsedretrievedProducts;
 
 } else {
-  //executable code
+  //instantiate new Product from below
   new Product('bag', 'jpg');
   new Product('banana', 'jpg');
   new Product('bathroom', 'jpg');
@@ -103,7 +106,7 @@ if (retrievedProducts) {
   new Product('water-can', 'jpg');
   new Product('wine-glass', 'jpg');
 }
-
+//renders results as text DOM
 function renderResults() {
   for (var i = 0; i < productsArray.length; i++) {
     // create element
@@ -114,7 +117,7 @@ function renderResults() {
     resultList.appendChild(li);
   }
 }
-
+//button hides results until presssed
 function buttonFunction() {
   var x = document.getElementById('list');
   if (x.style.display === 'none') {
@@ -126,6 +129,9 @@ function buttonFunction() {
 
 renderProduct();
 
+//event handler - takes image alt property (product's name in renderProduct function)
+//confines click counting to only the images - or receive error message
+//increments votes after confirming name property in productsArray
 function handleClick(event) {
   var clickedProduct = event.target.alt;
   if (clickedProduct) {
@@ -151,7 +157,7 @@ function handleClick(event) {
     alert('Please click on an image');
   }
 }
-
+//loads votes views and names counts into Chartjs
 function chartData() {
   for (var i = 0; i < productsArray.length; i++) {
     votesArray.push(productsArray[i].votes);
@@ -159,7 +165,7 @@ function chartData() {
     namesArray.push(productsArray[i].name);
   }
 }
-
+//creates bar chart
 function makeMyChart() {
   chartData();
   var chartObject = {
